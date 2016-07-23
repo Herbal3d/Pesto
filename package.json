@@ -1,0 +1,30 @@
+{
+  "name": "pesto",
+  "version": "1.0.0",
+  "description": "Session controller for Basil viewer",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Misterblue/Pesto.git"
+  },
+  "author": "Robert Adams",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/Misterblue/Pesto/issues"
+  },
+  "homepage": "https://github.com/Misterblue/Pesto#readme",
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.4.1",
+    "express": "~4.13.4",
+    "morgan": "~1.7.0",
+    "node-sass-middleware": "0.8.0",
+    "serve-favicon": "~2.3.0"
+  }
+}

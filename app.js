@@ -41,6 +41,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+gConfig.thrift = require('thrift');
+gConfig.pesto = require('./pestoService');
+
 var app = express();
 
 // view engine setup

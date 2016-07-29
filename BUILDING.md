@@ -14,6 +14,8 @@ git clone https://github.com/Misterblue/Pesto.git pesto-git
 cd pesto-git
 npm install     # install the dependencies specified in package.json
 
+./build.sh      # copy thrift and generated interface code into pesto-git dir
+
 npm start       # run the server
 ```
 

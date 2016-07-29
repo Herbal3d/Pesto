@@ -29,43 +29,10 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-module.exports = function(params, keyStore) {
+module.exports = function(params) {
     var module = {};
 
     module.params = params;
-    module.keyStore = keyStore;
-
-    module.pestoServer = require('../gen-Pesto-server-node/Pesto');
-    module.pestoServerTypes = require('../gen-Pesto-server-node/Pesto-server_types');
-
-    module.thrift = require('thrift');
-
-    module.Init = function() {
-        this.server = this.thrift.createServer(this.pestoServer, {
-            SetConfiguration: function(result) {
-                console.log('pestoServer SetConfiguration');
-            },
-            GetConfiguration: function(result) {
-                console.log('pestoServer GetConfiguration');
-            },
-            Subscribe: function() {
-                console.log('pestoServer Subscribe');
-            },
-            UnSubscribe: function() {
-                console.log('pestoServer UnSubscribe');
-            },
-            GetSubscriptions: function(result) {
-                console.log('pestoServer GetSubscriptions');
-            },
-            Notify: function() {
-                console.log('pestoServer Notify');
-            }
-        });
-    };
-
-    module.Start = function() {
-        this.server.listen(params.pestoPort);
-    };
 
     return module;
 };

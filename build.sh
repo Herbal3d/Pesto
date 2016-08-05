@@ -12,7 +12,13 @@ PESTODIR=${BASEDIR}/pesto-git
 PROTOCOLDIR=${BASEDIR}/Basil-protocol-git
 PROTOCOLPESTOSERVER=gen-Pesto-server-node
 PROTOCOLPESTOSERVERDIR=${PROTOCOLDIR}/${PROTOCOLPESTOSERVER}
+# For the test program
+PROTOCOLPESTOCLIENT=gen-Pesto-client-py
+PROTOCOLPESTOCLIENTDIR=${PROTOCOLDIR}/${PROTOCOLPESTOCLIENT}
+
 THRIFTDIR=${BASEDIR}/thrift-git
+
+THRIFTPYDIR=lib/python2.7/site-packages/thrift
 
 cd "${PESTODIR}"
 
@@ -25,10 +31,13 @@ fi
 ln -s "${THRIFTDIR}" node_modules/thrift
 
 cd "${PESTODIR}"
-rm -f "${PROTOCOLPESTOSERVER}"
+rm -rf "${PROTOCOLPESTOSERVER}"
 # thought I could use a symbolic link but, because of how NodeJS resolves
 #    requires (it dereferences all symbolic links) it was getting confused.
 # ln -s "${PROTOCOLPESTOSERVERDIR}" ${PROTOCOLPESTOSERVER}
 cp -r "${PROTOCOLPESTOSERVERDIR}" ${PROTOCOLPESTOSERVER}
 
+rm -rf ${PROTOCOLPESTOCLIENT}
+cp -r ${PROTOCOLPESTOCLIENTDIR} ${PROTOCOLPESTOCLIENT}
 
+ln -s /usr/${THRIFTPYDIR} test/venv/${THRIFTPYDIR}

@@ -1,3 +1,6 @@
+// Copyright (c) 2016, Robert Adams
+// Licensed under BSD 3-Clause license. See accompanying LICENSE file.
+
 var express = require('express');
 var router = express.Router();
 

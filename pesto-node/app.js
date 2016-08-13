@@ -1,8 +1,10 @@
 // Copyright (c) 2016, Robert Adams
 // Licensed under BSD 3-Clause license. See accompanying LICENSE file.
 
+// Global configuration
 var gConfig = require('./config.js');
 
+// NodeJS supporting libraries
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -10,14 +12,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// Express routers
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
+// Storage system for key/value pairs of configuration information
 var keyStore = require('./keyStore');
 
-var Pesto = require('./pestoService')({ 'pestoPort': gConfig.pestoPort }, keyStore);
+// The Pesto service itself
+var Pesto = require('./pestoService')(gConfig, keyStore);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+// Setup complete. Start Pesto.
 Pesto.Init();
 Pesto.Start();
 

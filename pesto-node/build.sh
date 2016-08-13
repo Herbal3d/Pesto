@@ -1,13 +1,16 @@
 #! /bin/bash
-# Assemble the pieces for Pesto source build
+# Assemble the pieces for Pesto NodeJS source build
 
 # The Pesto git repository is cloned into a directory that also
 #   includes the clones of Basil-protocol and the Thift sources.
 #   Those other projects must be build and around to be copied into
 #   the Pesto source tree.
 
+# This presumes BASEDIR contains a built version of Thrift ('thrift-git')
+#    and a compiled version of the Pesto thrift code ('Basil-protocol-git').
+
 BASEDIR=/home/basil
-PESTODIR=${BASEDIR}/pesto-git
+PESTODIR=${BASEDIR}/pesto-git/pesto-node
 
 PROTOCOLDIR=${BASEDIR}/Basil-protocol-git
 PROTOCOLPESTOSERVER=gen-Pesto-server-node
@@ -40,4 +43,5 @@ cp -r "${PROTOCOLPESTOSERVERDIR}" ${PROTOCOLPESTOSERVER}
 rm -rf ${PROTOCOLPESTOCLIENT}
 cp -r ${PROTOCOLPESTOCLIENTDIR} ${PROTOCOLPESTOCLIENT}
 
+rm -f test/venv/${THRIFTPYDIR}
 ln -s /usr/${THRIFTPYDIR} test/venv/${THRIFTPYDIR}

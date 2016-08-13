@@ -8,33 +8,38 @@ module.exports = function(params, keyStore) {
     module.keyStore = keyStore;
 
     module.pestoServer = require('../gen-Pesto-server-node/Pesto');
-    module.pestoServerTypes = require('../gen-Pesto-server-node/Pesto-server_types');
+    module.pestoServerTypes = require('../gen-Pesto-server-node/PestoServer_types');
 
     module.thrift = require('thrift');
 
+    // Perform initialization of Thrift functions
     module.Init = function() {
         this.server = this.thrift.createServer(this.pestoServer, {
-            SetConfiguration: function(result) {
+            SetConfiguration: function(auth, configs, notifyThis) {
                 console.log('pestoServer SetConfiguration');
             },
-            GetConfiguration: function(result) {
+            GetConfiguration: function(auth, filter, result) {
                 console.log('pestoServer GetConfiguration');
+                res = new this.pestoServerTypes
+                result( {} );
             },
-            Subscribe: function() {
+            Subscribe: function(auth, topic, subscriptionID, topicParameters) {
                 console.log('pestoServer Subscribe');
             },
-            UnSubscribe: function() {
+            UnSubscribe: function(auth, topic, subscriptionID) {
                 console.log('pestoServer UnSubscribe');
             },
-            GetSubscriptions: function(result) {
+            GetSubscriptions: function(auth, filter, result) {
                 console.log('pestoServer GetSubscriptions');
+                result( {} );
             },
-            Notify: function() {
+            Notify: function(auth, topic, props) {
                 console.log('pestoServer Notify');
             }
         });
     };
 
+    // Start listening and processing.
     module.Start = function() {
         this.server.listen(params.pestoPort);
     };
